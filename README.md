@@ -13,9 +13,6 @@
 	<a href="https://github.com/psf/black" target="_blank">
 		<img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="code style - black" />
 	</a>
-	<!-- <a href="https://github.com/python/mypy" target="_blank">
-		<img src="https://img.shields.io/badge/types-Mypy-blue.svg" alt="types - Mypy" />
-	</a> -->
 	<!-- <a href="https://raw.githubusercontent.com/dd/dd_yandex_pay/main/LICENSE" target="_blank">
 		<img src="https://img.shields.io/pypi/l/dd_yandex_pay?color=008033" alt="License - GNU Lesser General Public License v3.0" />
 	</a> -->

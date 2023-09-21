@@ -51,7 +51,9 @@ include = [
 	"AUTHORS",
 ]
 exclude = [
+	"/docs",
 	".gitignore",
+	"CONTRIBUTING.md",
 ]
 
 [tool.hatch.envs.default]
@@ -101,6 +103,37 @@ check = [
 format = [
 	"ruff --fix {args:.}",
 	"black {args:.}",
+]
+
+[tool.hatch.envs.docs]
+description = "Docs environment"
+detached = true
+python = "3.11"
+dependencies = [
+	"mkdocs[i18n]==1.5.2",
+	"mkdocs-literate-nav==0.6.1",
+	"mkdocs-material==9.3.1",
+	"mkdocs-git-revision-date-localized-plugin==1.2.0",
+	"mkdocs-git-authors-plugin==0.7.2",
+	"mkdocstrings[python]==0.23.0",
+	"black==23.9.1",
+	"mkdocs-minify-plugin==0.7.1",
+	"mkdocs-gen-files==0.5.0",
+	"Pygments==2.16.1",
+	"mike==1.1.2",
+	"linkchecker==10.2.1",
+]
+[tool.hatch.envs.docs.env-vars]
+DDYP_MKDOCS_ENABLE_MINIFY = "false"
+DDYP_MKDOCS_CONFIG = "mkdocs.yml"
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --config-file {env:DDYP_MKDOCS_CONFIG} --clean --strict {args}"
+serve = "mkdocs serve --config-file {env:DDYP_MKDOCS_CONFIG} --dev-addr localhost:8000 {args}"
+ci-build = "mike deploy --config-file {env:DDYP_MKDOCS_CONFIG} --update-aliases {args}"
+validate = "linkchecker --config .linkcheckerrc docs/dist"
+build-check = [
+	"build --no-directory-urls",
+	"validate",
 ]
 
 [tool.black]
