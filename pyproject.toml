@@ -39,7 +39,9 @@ dynamic = ["version"]
 
 [project.urls]
 "Homepage" = "https://github.com/dd/dd_yandex_pay"
+"Documentation" = "https://dd.github.io/dd_yandex_pay"
 "Repository" = "https://github.com/dd/dd_yandex_pay"
+"Changelog" = "https://github.com/dd/Meringue/blob/master/CHANGELOG.md"
 "Bug Tracker" = "https://github.com/dd/dd_yandex_pay/issues"
 
 [tool.hatch.version]
@@ -53,6 +55,7 @@ include = [
 exclude = [
 	"/docs",
 	".gitignore",
+	"CHANGELOG.md",
 	"CONTRIBUTING.md",
 ]
 
@@ -85,6 +88,10 @@ remove = [
 	"git config --local --remove-section gitflow.prefix",
 	"git config --local --remove-section gitflow.path",
 	"precommit_uninstall",
+]
+changelog-update = [
+	"git pull --tags",
+	"gitmoji-changelog update \"$(hatch version)\" --preset generic --group-similar-commits",
 ]
 
 [tool.hatch.envs.lint]

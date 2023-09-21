@@ -1,6 +1,34 @@
 <h1 align="center" >DD Yandex Pay</h1>
 
 <p align="center">
+	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+		<img src="https://img.shields.io/pypi/status/dd_yandex_pay.svg" alt="PyPI - Status" />
+	</a> -->
+	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+		<img src="https://img.shields.io/pypi/v/dd_yandex_pay.svg" alt="PyPI - Version" />
+	</a> -->
+	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+		<img src="https://img.shields.io/pypi/dm/dd_yandex_pay.svg" alt="PyPI - Downloads" />
+	</a> -->
+	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+		<img src="https://img.shields.io/pypi/pyversions/dd_yandex_pay.svg" alt="PyPI - Python Version" />
+	</a> -->
+	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+		<img src="https://img.shields.io/pypi/format/dd_yandex_pay.svg" alt="PyPI - Format" />
+	</a> -->
+</p>
+<p align="center">
+	<a href="https://github.com/dd/dd_yandex_pay/actions/workflows/mkdocs-release.yml" >
+		<img src="https://img.shields.io/github/actions/workflow/status/dd/dd_yandex_pay/mkdocs-release.yml?logo=github&label=docs" alt="Documentation - Release" />
+	</a>
+	<!-- <a href="https://github.com/dd/dd_yandex_pay/actions/workflows/test.yml" >
+		<img src="https://img.shields.io/github/actions/workflow/status/dd/dd_yandex_pay/test.yml?logo=github&label=tests" alt="Tests - Running" />
+	</a> -->
+	<!-- <a href="https://codecov.io/gh/dd/dd_yandex_pay" >
+		<img src="https://codecov.io/gh/dd/dd_yandex_pay/branch/release/1.0.0/graph/badge.svg?token=HV1QGD74EK" alt="Tests - Coverage" />
+	</a> -->
+</p>
+<p align="center">
 	<a href="https://github.com/pypa/hatch" target="_blank">
 		<img src="https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg" alt="Hatch project" />
 	</a>
