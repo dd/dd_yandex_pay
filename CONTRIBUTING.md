@@ -33,7 +33,8 @@ As you develop and refine, please try to keep your repository consistent with [g
 
 ## Tests
 
-When working on a project, it is extremely important to cover everything with tests in order to avoid problems and errors in the code. See working on tests in the appropriate [section](tests.md).
+
+When working on a project, it is extremely important to cover everything with tests in order to avoid problems and errors in the code. See working on tests in the appropriate section<!-- [section](tests.md) -->.
 
 
 ## Documentation
