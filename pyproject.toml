@@ -67,7 +67,7 @@ PYTHONPATH  = "."
 precommit_install = "pre-commit install {args}"
 precommit_uninstall = "pre-commit uninstall {args}"
 init = [
-	"git config --local gitflow.branch.master \"master\"",
+	"git config --local gitflow.branch.master \"main\"",
 	"git config --local gitflow.branch.develop \"dev\"",
 	"git config --local gitflow.prefix.feature \"feature/\"",
 	"git config --local gitflow.prefix.bugfix \"bugfix/\"",
