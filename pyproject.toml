@@ -1,0 +1,177 @@
+[build-system]
+requires = ["hatchling>=1.18.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dd_yandex_pay"
+description = "Wrapper for Yandex Pay API."
+readme = "README.md"
+requires-python = ">=3.8"
+license = "LGPL-3.0"
+authors = [
+	{ name = "Dmitry Dobrynin", email = "dd@tovarisch.engineer" },
+]
+keywords = ["yandex", "yandex pay", "payment"]
+classifiers = [
+	"Development Status :: 4 - Beta",
+	"Environment :: Web Environment",
+	"Intended Audience :: Developers",
+	"License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+	"Natural Language :: Russian",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3.8",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3 :: Only",
+	"Programming Language :: Python :: Implementation :: CPython",
+	"Programming Language :: Python :: Implementation :: PyPy",
+	"Topic :: Internet :: WWW/HTTP",
+	"Topic :: Software Development :: Libraries",
+	"Topic :: Utilities",
+]
+dependencies = [
+	"requests>=2.28.2",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Homepage" = "https://github.com/dd/dd_yandex_pay"
+"Repository" = "https://github.com/dd/dd_yandex_pay"
+"Bug Tracker" = "https://github.com/dd/dd_yandex_pay/issues"
+
+[tool.hatch.version]
+path = "dd_yandex_pay/__init__.py"
+
+[tool.hatch.build]
+include = [
+	"dd_yandex_pay",
+	"AUTHORS",
+]
+exclude = [
+	".gitignore",
+]
+
+[tool.hatch.envs.default]
+description = "Dev environment"
+python = "3.11"
+dependencies = [
+	"pre-commit==3.4.0",
+	"ipython==8.15.0",
+]
+[tool.hatch.envs.default.env-vars]
+PYTHONPATH  = "."
+[tool.hatch.envs.default.scripts]
+precommit_install = "pre-commit install {args}"
+precommit_uninstall = "pre-commit uninstall {args}"
+init = [
+	"git config --local gitflow.branch.master \"master\"",
+	"git config --local gitflow.branch.develop \"dev\"",
+	"git config --local gitflow.prefix.feature \"feature/\"",
+	"git config --local gitflow.prefix.bugfix \"bugfix/\"",
+	"git config --local gitflow.prefix.release \"release/\"",
+	"git config --local gitflow.prefix.hotfix \"hotfix/\"",
+	"git config --local gitflow.prefix.support \"support/\"",
+	"git config --local gitflow.prefix.versiontag \"v\"",
+	"git config --local gitflow.path.hooks $(pwd)\"/.git/hooks\"",
+	"precommit_install",
+]
+remove = [
+	"git config --local --remove-section gitflow.branch",
+	"git config --local --remove-section gitflow.prefix",
+	"git config --local --remove-section gitflow.path",
+	"precommit_uninstall",
+]
+
+[tool.hatch.envs.lint]
+description = "Lint environment"
+detached = true
+python = "3.11"
+dependencies = [
+	"ruff==0.0.290",
+	"black==23.9.1",
+]
+[tool.hatch.envs.lint.scripts]
+check = [
+	"ruff {args:.}",
+	"black --check --diff {args:.}",
+]
+format = [
+	"ruff --fix {args:.}",
+	"black {args:.}",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py38"]
+
+[tool.ruff]
+target-version = "py38"
+line-length = 100
+show-fixes = true
+# update-check = true
+select = [
+	"A",
+	"B",
+	"C",
+	"DTZ",
+	"E",
+	"EM",
+	"F",
+	"I",
+	"ICN",
+	"ISC",
+	"N",
+	"PLC",
+	"PLE",
+	"PLR",
+	"PLW",
+	"Q",
+	"RUF",
+	"S",
+	"SIM",
+	"T",
+	"TID",
+	"UP",
+	"W",
+	"YTT",
+]
+ignore = [
+	"RUF001",  # Allow similar characters like latin `c` and cyrillic `с`
+	"RUF002",  # Allow russian at docstrings
+	"RUF003",  # Allow russian at comment
+	"PLR0913",  # Allow any number of function arguments
+	"E741",  # Allow variables of like "l", "O",  "i"
+	# # Allow non-abstract empty methods in abstract base classes
+	# "B027",
+	# # Ignore checks for possible passwords
+	# "S105", "S106", "S107",
+	# # Ignore complexity
+	# "C901", "PLR0911", "PLR0912", "PLR0913", "PLR0915",
+	# "PLC1901", # empty string comparisons
+	# "PLW2901", # `for` loop variable overwritten
+	"SIM114", # Combine `if` branches using logical `or` operator
+]
+[tool.ruff.extend-per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+[tool.ruff.flake8-import-conventions]
+[tool.ruff.flake8-import-conventions.extend-aliases]
+[tool.ruff.flake8-quotes]
+[tool.ruff.flake8-unused-arguments]
+ignore-variadic-names = true
+[tool.ruff.isort]
+force-single-line = true
+known-first-party = ["dd_yandex_pay"]
+lines-after-imports = 2
+no-lines-before = ["local-folder"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+[tool.ruff.isort.sections]
+
+[tool.isort]
+known_first_party = ["dd_yandex_pay"]
+lines_after_imports = 2
+no_lines_before = ["LOCALFOLDER"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+force_single_line  = true
