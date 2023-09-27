@@ -15,14 +15,14 @@
         <link rel="canonical" href="https://dd.github.io/dd_yandex_pay/dev/dev/contributing/">
       
       
-        <link rel="prev" href="../../reference/dd_yandex_pay/client/">
+        <link rel="prev" href="../../reference/dd_yandex_pay/constants/">
       
       
         <link rel="next" href="../docs/">
       
       
-      <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.3.1">
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
     
     
       
@@ -30,10 +30,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.046329b4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d451bc0e.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.85d0ee34.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a5377069.min.css">
       
       
 
@@ -117,7 +117,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="DD Yandex Pay" class="md-header__button md-logo" aria-label="DD Yandex Pay" data-md-component="logo">
       
-  <img src="../../assets/pay-logo-b.svg" alt="logo">
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -157,7 +157,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
     
       <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
@@ -266,16 +266,17 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../usage/" class="md-tabs__link">
-        
-  
     
+    
+      <li class="md-tabs__item">
+        <a href="../../usage/getting_started/" class="md-tabs__link">
+          
   
   Usage
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -317,6 +318,23 @@
   
 
       
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../changelog/" class="md-tabs__link">
+        
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -341,7 +359,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="DD Yandex Pay" class="md-nav__button md-logo" aria-label="DD Yandex Pay" data-md-component="logo">
       
-  <img src="../../assets/pay-logo-b.svg" alt="logo">
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     DD Yandex Pay
@@ -385,12 +403,51 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../usage/" class="md-nav__link">
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
   
   <span class="md-ellipsis">
     Usage
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting started
   </span>
   
 
@@ -398,37 +455,136 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
-    
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
+    <li class="md-nav__item">
+      <a href="../../usage/client/" class="md-nav__link">
         
   
+  <span class="md-ellipsis">
+    Client
+  </span>
   
-    <a href="../../reference/dd_yandex_pay/__init__/" class="md-nav__link">
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
   
   <span class="md-ellipsis">
     Code Reference
   </span>
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/dd_yandex_pay/__init__/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    __init__.py
+  </span>
   
 
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/dd_yandex_pay/client/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    client.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/dd_yandex_pay/constants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    constants.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -444,15 +600,20 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
       
-        
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
         
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -596,6 +757,8 @@
     
     
     
+    
+    
       
       
     
@@ -624,9 +787,48 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -749,7 +951,7 @@
 
 <h1 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">¤</a></h1>
 <p>Please don't be shy - comment, discuss and suggest whatever you think is important in the <a href="https://github.com/dd/dd_yandex_pay/discussions">discussions</a> on github, if you notice a bug please describe it in <a href="https://github.com/dd/dd_yandex_pay/issues">issues</a>, and if you decide to contribute to the development of the project, feel free to send <a href="https://github.com/dd/dd_yandex_pay/pulls">pull request</a>, and if possible, read further during development this section.</p>
-<p>When developing, modifying and fixing a feature, please fill in and correct all annotations and docstrings in the code, and also try, if possible, to fill in / supplement the description of the functionality and its use in the <a href="../../usage/">section</a> of the documentation, also add tests for new or fixed functionality, read more below:</p>
+<p>When developing, modifying and fixing a feature, please fill in and correct all annotations and docstrings in the code, and also try, if possible, to fill in / supplement the description of the functionality and its use in the <a href="../usage">section</a> of the documentation, also add tests for new or fixed functionality, read more below:</p>
 <h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">¤</a></h2>
 <p>To work, you need a configured environment, for this there is the following script:</p>
 <div class="language-console highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="gp">$ </span>hatch<span class="w"> </span>run<span class="w"> </span>init
@@ -770,7 +972,7 @@
 <h2 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">¤</a></h2>
 <p>When working on a project, it is extremely important to cover everything with tests in order to avoid problems and errors in the code. See working on tests in the appropriate section<!-- <a href="tests.md">section</a> -->.</p>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">¤</a></h2>
-<p>The documentation is implemented using the <a href="https://www.mkdocs.org/">mkdocs</a> generator and the <a href="https://squidfunk.github.io/mkdocs-material/">mkdocs material</a> theme. When working on library functionality, it is important to expand the <a href="../../usage/">usage</a> section. For more information about developing documentation, see the corresponding <a href="../docs/">section</a>.</p>
+<p>The documentation is implemented using the <a href="https://www.mkdocs.org/">mkdocs</a> generator and the <a href="https://squidfunk.github.io/mkdocs-material/">mkdocs material</a> theme. When working on library functionality, it is important to expand the <a href="../usage">usage</a> section. For more information about developing documentation, see the corresponding <a href="../docs/">section</a>.</p>
 <h2 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">¤</a></h2>
 
 
@@ -817,7 +1019,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-09-21 23:04:36+0000</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-09-27 23:09:59+0000</span>
       
         <br>
         Created:
@@ -873,7 +1075,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../reference/dd_yandex_pay/client/" class="md-footer__link md-footer__link--prev" aria-label="Previous: client.py" rel="prev">
+          <a href="../../reference/dd_yandex_pay/constants/" class="md-footer__link md-footer__link--prev" aria-label="Previous: constants.py">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -883,14 +1085,14 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                client.py
+                constants.py
               </div>
             </div>
           </a>
         
         
           
-          <a href="../docs/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction" rel="next">
+          <a href="../docs/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
@@ -953,10 +1155,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.path", "navigation.prune", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "navigation.footer", "content.action.view", "content.action.edit", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.path", "navigation.prune", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "navigation.footer", "content.action.view", "content.action.edit", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.dff1b7c8.min.js"></script>
+      <script src="../../assets/javascripts/bundle.726fbb30.min.js"></script>
       
     
   </body>
