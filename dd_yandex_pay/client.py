@@ -1,9 +1,9 @@
+import urllib
 import uuid
 from typing import Final
 from typing import List
 from typing import Optional
 from typing import Union
-from urllib.parse import urljoin
 
 import requests
 
@@ -33,14 +33,10 @@ class YandexPayClient:
     ):
         """
         Attributes:
-            api_key: Ключи [Yandex Pay Merchant API][api_key].
+            api_key: Ключи [Yandex Pay Merchant API](https://console.pay.yandex.ru/web/account/settings/online).
             base_url: Базовый адрес Yandex Pay API.
-            timeout: Дефолтный таймаут запроса для [requests][timeout].
-            deadline: Дефолтный таймаут запроса в миллисекундах для [яндекс][deadline].
-
-        [api_key]: https://console.pay.yandex.ru/web/account/settings/online
-        [timeout]: https://requests.readthedocs.io/en/latest/user/advanced/#timeouts
-        [deadline]: https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/
+            timeout: Дефолтный таймаут запроса для [requests](https://requests.readthedocs.io/en/latest/user/advanced/#timeouts).
+            deadline: Дефолтный таймаут запроса в миллисекундах для [яндекс](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/).
         """
         self.api_key = api_key
         self.base_url = base_url
@@ -80,7 +76,7 @@ class YandexPayClient:
             Адрес для запроса.
         """
 
-        return urljoin(self.base_url, resourse)
+        return urllib.parse.urljoin(self.base_url, resourse)
 
     def request(
         self,
@@ -88,7 +84,7 @@ class YandexPayClient:
         url: str,
         headers: Optional[dict] = None,
         raise_errors: Optional[bool] = True,
-        **kwargs,
+        **kwargs: dict,
     ) -> requests.Response:
         """
         Метод для выполнения запросов к Yandex Pay API.
@@ -108,6 +104,9 @@ class YandexPayClient:
         response = requests.request(method, url, **kwargs)
 
         if raise_errors:
+            """
+            Проверять наличие ошибки при 200 статусе?
+            """
             response.raise_for_status()
 
         return response
@@ -123,21 +122,23 @@ class YandexPayClient:
         availablePaymentMethods: Optional[List[str]] = None,
         extensions: Optional[dict] = None,
         ttl: Optional[int] = None,
-        raise_errors: Optional[int] = True,
+        raise_errors: Optional[bool] = True,
         **kwargs: dict,
     ) -> requests.Response:
         """
         Запрос для создания ссылки на оплату.
 
-        Подбронее о данных и ответе в документации [яндекса][docs].
+        Подбронее о данных и ответе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post).
 
         Attributes:
-            cart: [Корзина][cart].
+            cart: [Корзина](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#renderedcart).
             currencyCode: Трехбуквенный код валюты заказа (ISO 4217).
             orderId: Идентификатор заказа.
-            redirectUrls: [Ссылки для переадресации][redirect_urls] пользователя с формы оплаты.
+            redirectUrls: [Ссылки для переадресации](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#merchantredirecturls)
+                пользователя с формы оплаты.
             availablePaymentMethods: Доступные методы оплаты на платежной форме Яндекс Пэй.
-            extensions: [Дополнительные параметры][extensions] для оформления оффлайн заказа.
+            extensions: [Дополнительные параметры](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#orderextensions)
+                для оформления оффлайн заказа.
             ttl: Время жизни заказа (в секундах).
             raise_errors: Флаг, вызывать ошибки с помощью метода
                 [raise_for_status][requests.Response.raise_for_status] или нет.
@@ -146,11 +147,6 @@ class YandexPayClient:
 
         Returns:
             Полученый ответ API.
-
-        [docs]: https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post
-        [cart]: https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#renderedcart
-        [redirect_urls]: https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#merchantredirecturls
-        [extensions]: https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#orderextensions
         """
         json = {
             # "availablePaymentMethods": availablePaymentMethods,
@@ -171,6 +167,12 @@ class YandexPayClient:
         if ttl:
             json["ttl"] = ttl
 
-        response = self.request("POST", self.get_url(self.RESOURCE_ORDER), json=json, **kwargs)
+        response = self.request(
+            "POST",
+            self.get_url(self.RESOURCE_ORDER),
+            json=json,
+            raise_errors=raise_errors,
+            **kwargs,
+        )
 
         return response
