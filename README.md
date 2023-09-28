@@ -1,21 +1,21 @@
 <h1 align="center" >DD Yandex Pay</h1>
 
 <p align="center">
-	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+	<a href="https://pypi.org/project/dd_yandex_pay">
 		<img src="https://img.shields.io/pypi/status/dd_yandex_pay.svg" alt="PyPI - Status" />
-	</a> -->
-	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+	</a>
+	<a href="https://pypi.org/project/dd_yandex_pay">
 		<img src="https://img.shields.io/pypi/v/dd_yandex_pay.svg" alt="PyPI - Version" />
-	</a> -->
-	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+	</a>
+	<a href="https://pypi.org/project/dd_yandex_pay">
 		<img src="https://img.shields.io/pypi/dm/dd_yandex_pay.svg" alt="PyPI - Downloads" />
-	</a> -->
-	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+	</a>
+	<a href="https://pypi.org/project/dd_yandex_pay">
 		<img src="https://img.shields.io/pypi/pyversions/dd_yandex_pay.svg" alt="PyPI - Python Version" />
-	</a> -->
-	<!-- <a href="https://pypi.org/project/dd_yandex_pay">
+	</a>
+	<a href="https://pypi.org/project/dd_yandex_pay">
 		<img src="https://img.shields.io/pypi/format/dd_yandex_pay.svg" alt="PyPI - Format" />
-	</a> -->
+	</a>
 </p>
 <p align="center">
 	<a href="https://github.com/dd/dd_yandex_pay/actions/workflows/mkdocs-release.yml" >
@@ -41,9 +41,9 @@
 	<a href="https://github.com/psf/black" target="_blank">
 		<img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="code style - black" />
 	</a>
-	<!-- <a href="https://raw.githubusercontent.com/dd/dd_yandex_pay/main/LICENSE" target="_blank">
+	<a href="https://raw.githubusercontent.com/dd/dd_yandex_pay/main/LICENSE" target="_blank">
 		<img src="https://img.shields.io/pypi/l/dd_yandex_pay?color=008033" alt="License - GNU Lesser General Public License v3.0" />
-	</a> -->
+	</a>
 </p>
 
 Wrapper for [Yandex Pay API](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/).
