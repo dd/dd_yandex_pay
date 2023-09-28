@@ -1,18 +1,20 @@
 # YandexPayClient
 
-Минимально инициализации клиенту необходимо передать api-ключ:
+Минимально для инициализации клиенту необходимо передать api-ключ:
 
-```pycon
+```pycon linenums="0"
 >>> from dd_yandex_pay import client
->>> yp_client = client.YandexPayClient("api-key"), base_url=client.SANDBOX_URL)
+>>> yp_client = client.YandexPayClient("api-key", base_url=client.SANDBOX_URL)
 ```
+
+Базовый урл не обязательный параметр и по умолчанию настроен на боевое API.
 
 Так же в клиент можно передать несколько [дополнительных параметров][dd_yandex_pay.client.YandexPayClient].
 
 
 ## Creating order aka payment link
 
-Для создания ссылки на оплату в наличии метод [create_order][dd_yandex_pay.client.YandexPayClient.create_order].
+Для создания ссылки на оплату есть метод [create_order][dd_yandex_pay.client.YandexPayClient.create_order].
 
 ```pycon linenums="0"
 >>> cart = {
@@ -47,4 +49,28 @@
 ```
 
 !!! info
-	Обратите внимание что хоть в Yandex Pay API и подразумевается что протокол общения с API будет происходить не через http code 200, а статус обработки запроса будет отражаться в [теле ответа](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#200-ok) (в котором есть поля _status_ и _code_), на деле в случае ошибки API вернёт ответ с http кодом соответствующей ошибки (например 401 в случае неправильного токена, или 400 в случае неверных данных в теле запроса).
+	Обратите внимание, читая [документацию](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#200-ok) Yandex Pay API может показаться что статус запроса будет отдаваться в теле ответа в параметрах _status_ и _code_, а http код всегда 200 и будет отражать сетевое состояние, но на деле, это не так, если например выполнить запрос с заведомо неверным ключом, вернётся 401 ошибка, а в теле ответа будет примерно такое содержимое:
+
+	```json linenums="0"
+	{
+		"status": "fail",
+		"reasonCode": "AUTHENTICATION_ERROR",
+		"reason": "Malformed API key"
+	}
+	```
+
+	а если выполнить запрос на создание ссылки на оплату с неверными данными, получим ответ с кодом 400 и следующим содержимым в теле ответа:
+
+	```json linenums="0"
+	{
+		"status": "fail",
+		"reasonCode": "ORDER_AMOUNT_MISMATCH",
+		"reason": "Cart total amount mismatch: expected `cart_total` = `items_sum` - `discounts_sum`, but found 0.00 != 180.00 - 0.00",
+		"details": {
+			"cart_total": "0.00",
+			"items_sum": "180.00",
+			"discounts_sum": "0.00",
+			"description": "Cart total amount mismatch: expected `cart_total` = `items_sum` - `discounts_sum`, but found 0.00 != 180.00 - 0.00"
+		}
+	}
+	```

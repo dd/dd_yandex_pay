@@ -5,8 +5,7 @@
 * [Code Reference](reference/)
 * Contributing
 	* [Introduction](dev/contributing.md)
-	* Documentations
-		* [Introduction](dev/docs/index.md)
+	* [Documentations](dev/docs/index.md)
 		* [Examples](dev/docs/examples.md)
 	* [Tests](dev/tests.md)
 * [Changelog](changelog.md)

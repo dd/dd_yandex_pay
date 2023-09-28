@@ -20,6 +20,15 @@ Type "help", "copyright", "credits" or "license" for more information.
 Для взаимодействия с [Yandex Pay API][yandex_pay_api_docs] реализован интерфейс в виде класса [YandexPayClient][yandexpayclient] с набором методов для обращения к каждому из ендпоинтов API:
 
 * [create_order][creating-order-aka-payment-link]
+* get_order
+* cancel_order
+* refund_order
+* refund_order_v2
+* capture_order
+* get_operations
+
+!!! note
+	Для запросов к апи вам понадобиться получить API-ключ для работы с Yandex Pay API, о том как его получить описано в [соответствующем разделе](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/#auth) в документации Yandex Pay.
 
 
 [yandex_pay_api_docs]: https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/
