@@ -1,0 +1,6 @@
+{
+	"project": {
+		"name": "DD Yandex Pay",
+		"description": "Wrapper for Yandex Pay API."
+	}
+}

@@ -2,7 +2,7 @@
 
 Please don't be shy - comment, discuss and suggest whatever you think is important in the [discussions](https://github.com/dd/dd_yandex_pay/discussions) on github, if you notice a bug please describe it in [issues](https://github.com/dd/dd_yandex_pay/issues), and if you decide to contribute to the development of the project, feel free to send [pull request](https://github.com/dd/dd_yandex_pay/pulls), and if possible, read further during development this section.
 
-When developing, modifying and fixing a feature, please fill in and correct all annotations and docstrings in the code, and also try, if possible, to fill in / supplement the description of the functionality and its use in the [section](../usage/index.md) of the documentation, also add tests for new or fixed functionality, read more below:
+When developing, modifying and fixing a feature, please fill in and correct all annotations and docstrings in the code, and also try, if possible, to fill in / supplement the description of the functionality and its use in the [section](../usage) of the documentation, also add tests for new or fixed functionality, read more below:
 
 
 ## Environment
@@ -33,12 +33,13 @@ As you develop and refine, please try to keep your repository consistent with [g
 
 ## Tests
 
-When working on a project, it is extremely important to cover everything with tests in order to avoid problems and errors in the code. See working on tests in the appropriate [section](tests.md).
+
+When working on a project, it is extremely important to cover everything with tests in order to avoid problems and errors in the code. See working on tests in the appropriate section<!-- [section](tests.md) -->.
 
 
 ## Documentation
 
-The documentation is implemented using the [mkdocs](https://www.mkdocs.org/) generator and the [mkdocs material](https://squidfunk.github.io/mkdocs-material/) theme. When working on library functionality, it is important to expand the [usage](../usage/index.md) section. For more information about developing documentation, see the corresponding [section](docs/index.md).
+The documentation is implemented using the [mkdocs](https://www.mkdocs.org/) generator and the [mkdocs material](https://squidfunk.github.io/mkdocs-material/) theme. When working on library functionality, it is important to expand the [usage](../usage) section. For more information about developing documentation, see the corresponding [section](docs/index.md).
 
 
 ## Versioning

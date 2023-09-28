@@ -16,25 +16,18 @@ theme:
   name: material
   language: en
   custom_dir: docs/theme
-  logo: assets/pay-logo-b.svg
-  favicon: assets/favicon.png
+  logo: assets/logo.svg
+  favicon: assets/favicon.ico
   palette:
-    # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/theme-light-dark
-        name: Switch to light mode
-    # Palette toggle for dark mode
+    # dark mode and switch to automatic
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
+      primary: black
       accent: indigo
       toggle:
         icon: material/weather-night
-        name: Switch to system preference
-    # Palette toggle for light mode
+        name: Switch to light mode
+    # light mode and switch to dark
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: indigo
