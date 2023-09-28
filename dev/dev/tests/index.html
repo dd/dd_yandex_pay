@@ -749,6 +749,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#autotests" class="md-nav__link">
+    Autotests
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -819,6 +826,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#autotests" class="md-nav__link">
+    Autotests
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -860,13 +874,16 @@
 <p>A matrix for a set of python and django versions is also configured in hatch, you can see more about this in the settings in the <code>pyproject.toml</code> file, you can run the entire test matrix with the hatch script:</p>
 <div class="language-console highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="gp">$ </span>hatch<span class="w"> </span>run<span class="w"> </span>mtest:check
 </code></pre></div>
+<h2 id="autotests">Autotests<a class="headerlink" href="#autotests" title="Permanent link">¤</a></h2>
+<p>Tests are automatically processed when pushing to <code>main</code>, <code>dev</code> and release branches <code>release/*</code>. See workflow <a href="https://github.com/dd/dd_yandex_pay/blob/main/.github/workflows/test.yml">config</a> for details.</p>
+<p>In the process, test results are uploaded to <a href="https://app.codecov.io/gh/dd/dd_yandex_pay">codecov.io</a>.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-09-27 23:09:59+0000</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-09-28 00:06:57+0000</span>
       
         <br>
         Created:
