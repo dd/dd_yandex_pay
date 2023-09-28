@@ -1,0 +1,43 @@
+name: Tests
+
+on:
+  push:
+    branches:
+    - main
+    - dev
+    - "release/*"
+  pull_request:
+    branches:
+    - "*"
+
+jobs:
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Hatch
+      run: pip install --upgrade hatch
+
+    - name: Run Tests
+      run: |
+        hatch run mtest.py${{ matrix.python-version }}:check --cov=dd_yandex_pay --cov-report term-missing --cov-report json
+
+    - name: Disambiguate coverage filename
+      run: mv coverage.json "coverage.py${{ matrix.python-version }}.json"
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

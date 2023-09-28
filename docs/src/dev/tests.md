@@ -16,3 +16,10 @@ A matrix for a set of python and django versions is also configured in hatch, yo
 ```console
 $ hatch run mtest:check
 ```
+
+
+## Autotests
+
+Tests are automatically processed when pushing to `main`, `dev` and release branches `release/*`. See workflow [config](https://github.com/dd/dd_yandex_pay/blob/main/.github/workflows/test.yml) for details.
+
+In the process, test results are uploaded to [codecov.io](https://app.codecov.io/gh/dd/dd_yandex_pay).
