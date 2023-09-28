@@ -38,7 +38,6 @@ dependencies = [
 dynamic = ["version"]
 
 [project.urls]
-"Homepage" = "https://github.com/dd/dd_yandex_pay"
 "Documentation" = "https://dd.github.io/dd_yandex_pay"
 "Repository" = "https://github.com/dd/dd_yandex_pay"
 "Changelog" = "https://dd.github.io/dd_yandex_pay/changelog/"

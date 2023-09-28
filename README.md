@@ -48,4 +48,6 @@
 
 Wrapper for [Yandex Pay API](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/).
 
+Read a detailed description of how the wrapper works in the [usage section](https://dd.github.io/dd_yandex_pay/usage/getting_started/) of the [documentation](https://dd.github.io/Meringue/).
+
 However, if someone decides to use this functionality in their project, and even more so to add functionality or change the implementation to a more correct, beautiful or understandable one, I will only be happy, do not worry and feel free to write to me by [mail](mailto:dd@tovarisch.engineer), create an [issue](https://github.com/dd/dd_yandex_pay/issues) or [pull request](https://github.com/dd/dd_yandex_pay/pulls) on [github](https://github.com/dd/dd_yandex_pay).
