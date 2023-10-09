@@ -25,6 +25,7 @@ classifiers = [
 	"Programming Language :: Python :: 3.9",
 	"Programming Language :: Python :: 3.10",
 	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
 	"Programming Language :: Python :: 3 :: Only",
 	"Programming Language :: Python :: Implementation :: CPython",
 	"Programming Language :: Python :: Implementation :: PyPy",
@@ -140,7 +141,7 @@ PYTHONPATH  = "."
 [tool.hatch.envs.mtest.scripts]
 check = "pytest {args:-q}"
 [[tool.hatch.envs.mtest.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11"]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
 [tool.hatch.envs.docs]
 description = "Docs environment"
