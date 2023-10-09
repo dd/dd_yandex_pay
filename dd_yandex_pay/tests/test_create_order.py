@@ -1,19 +1,20 @@
 """
 Cases:
   * Checking the sent data.
-  * Checking the use of the YandexPayClient.request method.
-  * Using the get_url method.
   * Request with a full set of request parameters.
-  * Using raise_for_status to return errors.
-  * Disabling raise errors.
+  * Using the get_url method.
+  * Checking the use of the YandexPayClient.request method.
   * Passing additional parameters to requests.request.
+  * Checking the use of the YandexPayClient.response_handler method.
+  * Checking the returned data using the method.
 """
 
+import json
 from unittest.mock import patch
 
 import requests
 
-from dd_yandex_pay import client
+from dd_yandex_pay import YandexPayClient
 from dd_yandex_pay import constants
 
 
@@ -48,8 +49,15 @@ data = {
     },
 }
 
+response_data = {
+    "code": 200,
+    "status": "success",
+    "data": {"paymentUrl": "http://127.0.0.1/payment_url"},
+}
+
 custom_response = requests.Response()
 custom_response.status_code = 200
+custom_response._content = bytes(json.dumps(response_data), "utf-8")
 
 
 def test_request_data():
@@ -57,31 +65,9 @@ def test_request_data():
     Checking the sent data.
     """
 
-    yp_client = client.YandexPayClient("api-key", base_url="http://127.0.0.1/")
+    yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
 
     with patch("requests.request", return_value=custom_response) as mocked_request:
-        response = yp_client.create_order(
-            cart=cart,
-            currencyCode=data["currencyCode"],
-            orderId=data["orderId"],
-            redirectUrls=data["redirectUrls"],
-        )
-
-        mocked_request.assert_called_once()
-        assert mocked_request.call_args.kwargs["json"] == data
-        assert response == custom_response
-
-
-def test_usage_yandexpayclient_request():
-    """
-    Checking the use of the YandexPayClient.request method.
-    """
-
-    yp_client = client.YandexPayClient("api-key", base_url="http://127.0.0.1/")
-
-    with patch(
-        "dd_yandex_pay.client.YandexPayClient.request", return_value=custom_response
-    ) as mocked_request:
         yp_client.create_order(
             cart=cart,
             currencyCode=data["currencyCode"],
@@ -89,28 +75,8 @@ def test_usage_yandexpayclient_request():
             redirectUrls=data["redirectUrls"],
         )
 
-        mocked_request.assert_called_once()
-
-
-@patch("requests.request", return_value=custom_response)
-def test_usage_yandexpayclient_get_url(mocked_request):
-    """
-    Using the get_url method.
-    """
-
-    yp_client = client.YandexPayClient("api-key", base_url="http://127.0.0.1/")
-
-    with patch(
-        "dd_yandex_pay.client.YandexPayClient.get_url", return_value="http://127.0.0.1/"
-    ) as mocked_get_url:
-        yp_client.create_order(
-            cart=cart,
-            currencyCode=data["currencyCode"],
-            orderId=data["orderId"],
-            redirectUrls=data["redirectUrls"],
-        )
-
-        mocked_get_url.assert_called_once_with(yp_client.RESOURCE_ORDER)
+    mocked_request.assert_called_once()
+    assert mocked_request.call_args.kwargs["json"] == data
 
 
 @patch("requests.request", return_value=custom_response)
@@ -119,7 +85,7 @@ def test_all_data_params(mocked_request):
     Request with a full set of request parameters.
     """
 
-    yp_client = client.YandexPayClient("api-key", base_url="http://127.0.0.1/")
+    yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
     yp_client.create_order(
         cart=cart,
         currencyCode=data["currencyCode"],
@@ -139,43 +105,45 @@ def test_all_data_params(mocked_request):
     }
 
 
-@patch("requests.models.Response.raise_for_status")
 @patch("requests.request", return_value=custom_response)
-def test_using_raise_for_status(mocked_request, mocked_raise_for_status):
+def test_usage_yandexpayclient_get_url(mocked_request):
     """
-    Using raise_for_status to return errors.
-
-    Enabled by default.
+    Using the get_url method.
     """
 
-    yp_client = client.YandexPayClient("api-key", base_url="http://127.0.0.1/")
-    yp_client.create_order(
-        cart=cart,
-        currencyCode=data["currencyCode"],
-        orderId=data["orderId"],
-        redirectUrls=data["redirectUrls"],
-    )
+    yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
 
-    mocked_raise_for_status.assert_called_once()
+    with patch(
+        "dd_yandex_pay.yp_client.YandexPayClient.get_url", return_value="http://127.0.0.1/"
+    ) as mocked_get_url:
+        yp_client.create_order(
+            cart=cart,
+            currencyCode=data["currencyCode"],
+            orderId=data["orderId"],
+            redirectUrls=data["redirectUrls"],
+        )
+
+    mocked_get_url.assert_called_once_with(yp_client.RESOURCE_ORDER_CREATE)
 
 
-@patch("requests.models.Response.raise_for_status")
-@patch("requests.request", return_value=custom_response)
-def test_disabling_raise_for_status(mocked_request, mocked_raise_for_status):
+def test_usage_request():
     """
-    Disabling raise errors.
+    Checking the use of the YandexPayClient.request method.
     """
 
-    yp_client = client.YandexPayClient("api-key", base_url="http://127.0.0.1/")
-    yp_client.create_order(
-        cart=cart,
-        currencyCode=data["currencyCode"],
-        orderId=data["orderId"],
-        redirectUrls=data["redirectUrls"],
-        raise_errors=False,
-    )
+    yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
 
-    mocked_raise_for_status.assert_not_called()
+    with patch(
+        "dd_yandex_pay.yp_client.YandexPayClient.request", return_value=custom_response
+    ) as mocked_request:
+        yp_client.create_order(
+            cart=cart,
+            currencyCode=data["currencyCode"],
+            orderId=data["orderId"],
+            redirectUrls=data["redirectUrls"],
+        )
+
+    mocked_request.assert_called_once()
 
 
 @patch("requests.request", return_value=custom_response)
@@ -184,7 +152,7 @@ def test_passing_additional_parameters(mocked_request):
     Passing additional parameters to requests.request.
     """
 
-    yp_client = client.YandexPayClient("api-key", base_url="http://127.0.0.1/")
+    yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
     yp_client.create_order(
         cart=cart,
         currencyCode=data["currencyCode"],
@@ -197,3 +165,40 @@ def test_passing_additional_parameters(mocked_request):
     mocked_request.assert_called_once()
     assert mocked_request.call_args.kwargs["allow_redirects"] is False
     assert mocked_request.call_args.kwargs["cookies"] == {"foo": "bar"}
+
+
+@patch("requests.request", return_value=custom_response)
+def test_usage_response_handler(mocked_request):
+    """
+    Checking the use of the YandexPayClient.response_handler method.
+    """
+
+    yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
+
+    with patch("dd_yandex_pay.yp_client.YandexPayClient.response_handler") as mocked_handler:
+        yp_client.create_order(
+            cart=cart,
+            currencyCode=data["currencyCode"],
+            orderId=data["orderId"],
+            redirectUrls=data["redirectUrls"],
+        )
+
+    mocked_handler.assert_called_once_with(custom_response, True)
+
+
+def test_returned_data():
+    """
+    Checking the returned data using the method.
+    """
+
+    yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
+
+    with patch("requests.request", return_value=custom_response):
+        response = yp_client.create_order(
+            cart=cart,
+            currencyCode=data["currencyCode"],
+            orderId=data["orderId"],
+            redirectUrls=data["redirectUrls"],
+        )
+
+    assert response == response_data["data"]

@@ -3,8 +3,8 @@
 Минимально для инициализации клиенту необходимо передать api-ключ:
 
 ```pycon linenums="0"
->>> from dd_yandex_pay import client
->>> yp_client = client.YandexPayClient("api-key", base_url=client.SANDBOX_URL)
+>>> from dd_yandex_pay import YandexPayClient
+>>> yp_client = YandexPayClient("api-key", base_url="https://sandbox.pay.yandex.ru/api/merchant/")
 ```
 
 Базовый урл не обязательный параметр и по умолчанию настроен на боевое API.
