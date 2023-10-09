@@ -9,12 +9,12 @@
 
 Базовый урл не обязательный параметр и по умолчанию настроен на боевое API.
 
-Так же в клиент можно передать несколько [дополнительных параметров][dd_yandex_pay.client.YandexPayClient].
+Так же в клиент можно передать несколько [дополнительных параметров][dd_yandex_pay.yp_client.YandexPayClient].
 
 
 ## Creating order aka payment link
 
-Для создания ссылки на оплату есть метод [create_order][dd_yandex_pay.client.YandexPayClient.create_order].
+Для создания ссылки на оплату есть метод [create_order][dd_yandex_pay.yp_client.YandexPayClient.create_order].
 
 ```pycon linenums="0"
 >>> cart = {
