@@ -22,18 +22,18 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
     
     
       
-        <title>Introduction - DD Yandex Pay</title>
+        <title>Documentation - DD Yandex Pay</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.d451bc0e.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bd3936ea.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a5377069.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -134,7 +134,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Documentation
             
           </span>
         </div>
@@ -539,11 +539,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/dd_yandex_pay/client/" class="md-nav__link">
+      <a href="../../reference/dd_yandex_pay/constants/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    client.py
+    constants.py
   </span>
   
 
@@ -559,11 +559,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/dd_yandex_pay/constants/" class="md-nav__link">
+      <a href="../../reference/dd_yandex_pay/exceptions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    constants.py
+    exceptions.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/dd_yandex_pay/yp_client/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    yp_client.py
   </span>
   
 
@@ -698,7 +718,7 @@
           
   
   <span class="md-ellipsis">
-    Introduction
+    Documentation
   </span>
   
 
@@ -709,7 +729,7 @@
         
   
   <span class="md-ellipsis">
-    Introduction
+    Documentation
   </span>
   
 
@@ -1038,67 +1058,67 @@
 <p>There are several options for documentation configuration:</p>
 <h3 id="ddyp_mkdocs_code_parce_enabled"><code>DDYP_MKDOCS_CODE_PARCE_ENABLED</code><a class="headerlink" href="#ddyp_mkdocs_code_parce_enabled" title="Permanent link">¤</a></h3>
 <dl>
-<dt><code>default: true</code></dt>
 <dd>
+<p><code>default: true</code></p>
 <p>Enabling / disabling the output of sources in the documentation "on-the-fly" (organized based on the example from the <a href="https://mkdocstrings.github.io/recipes/#automatic-code-reference-pages">mkdocstrings</a> documentation).</p>
 </dd>
 </dl>
 <h3 id="ddyp_mkdocs_code_parce_source_path"><code>DDYP_MKDOCS_CODE_PARCE_SOURCE_PATH</code><a class="headerlink" href="#ddyp_mkdocs_code_parce_source_path" title="Permanent link">¤</a></h3>
 <dl>
-<dt><code>default: "dd_yandex_pay"</code></dt>
 <dd>
+<p><code>default: "dd_yandex_pay"</code></p>
 <p>A directory with sources for "on-the-fly" generation.</p>
 </dd>
 </dl>
 <h3 id="ddyp_mkdocs_code_parce_docs_path"><code>DDYP_MKDOCS_CODE_PARCE_DOCS_PATH</code><a class="headerlink" href="#ddyp_mkdocs_code_parce_docs_path" title="Permanent link">¤</a></h3>
 <dl>
-<dt><code>default: "reference"</code></dt>
 <dd>
+<p><code>default: "reference"</code></p>
 <p>Documentation directory for displaying "on-the-fly" generated source documentation.</p>
 </dd>
 </dl>
 <h3 id="ddyp_mkdocs_code_parce_show_nav"><code>DDYP_MKDOCS_CODE_PARCE_SHOW_NAV</code><a class="headerlink" href="#ddyp_mkdocs_code_parce_show_nav" title="Permanent link">¤</a></h3>
 <dl>
-<dt><code>default: false</code></dt>
 <dd>
+<p><code>default: false</code></p>
 <p>Parameter for debugging generated "on-the-fly" navigation.</p>
 </dd>
 </dl>
 <h3 id="ddyp_mkdocs_enabled_git_revision_date"><code>DDYP_MKDOCS_ENABLED_GIT_REVISION_DATE</code><a class="headerlink" href="#ddyp_mkdocs_enabled_git_revision_date" title="Permanent link">¤</a></h3>
 <dl>
-<dt><code>default: true</code></dt>
 <dd>
+<p><code>default: true</code></p>
 <p>Option to enable/disable modification dates for documentation files. It will be useful to disable it when developing locally so that the console is not clogged with errors.</p>
 </dd>
 </dl>
 <h3 id="ddyp_mkdocs_offline"><code>DDYP_MKDOCS_OFFLINE</code><a class="headerlink" href="#ddyp_mkdocs_offline" title="Permanent link">¤</a></h3>
 <dl>
-<dt><code>default: false</code></dt>
 <dd>
+<p><code>default: false</code></p>
 <p>Parameter for building documentation into a build working from a folder, without the need to start the server. read more about the mechanism <a href="https://squidfunk.github.io/mkdocs-material/setup/building-for-offline-usage/">here</a>.</p>
 </dd>
 </dl>
 <h3 id="ddyp_mkdocs_enable_minify"><code>DDYP_MKDOCS_ENABLE_MINIFY</code><a class="headerlink" href="#ddyp_mkdocs_enable_minify" title="Permanent link">¤</a></h3>
 <dl>
-<dt><code>default: true</code></dt>
 <dd>
+<p><code>default: true</code></p>
 <p>Parameter to enable plugin <a href="https://github.com/byrnereese/mkdocs-minify-plugin">minify</a> minifying html, js and css when generating documentation.</p>
 <p>When working with <a class="autorefs autorefs-internal" href="#local-development">local server</a> documentation, this option is disabled.</p>
 </dd>
 </dl>
 <h2 id="building-and-publishing">Building and publishing<a class="headerlink" href="#building-and-publishing" title="Permanent link">¤</a></h2>
 <p>There is a separate <code>hatch run docs:build</code> command for building documentation.</p>
-<p>But before pushing the updated documentation, please run the <code>hatch run docs:build-check</code> command, it will build the documentation and check the links for broken ones.</p>
+<p>But before pushing the updated documentation, please run the <code>hatch run docs:build-check</code> command, it will build the documentation with rigth parameters and check the links for broken ones.</p>
 <p>Documentation is collected in <a href="https://docs.github.com/en/actions">GitHub Actions</a> and uploaded to the <a href="https://github.com/dd/dd_yandex_pay/tree/gh-pages">gh-pages</a> branch and published using <a href="https://pages.github.com/">GitHub Pages</a>.</p>
 <p>The documentation is automatically collected and rolled out when pushing the release tag (<code>v*</code>), and when pushing to the <code>dev</code> branch, the dev version of the documentation is updated.</p>
-<p>You can learn more about these processes in the <a href="https://github.com/dd/dd_yandex_pay/blob/main/.github/workflows/mkdocs-release.yml">releasel</a> and <a href="https://github.com/dd/dd_yandex_pay/blob/main/.github/workflows/mkdocs-dev.yml">dev</a> workflow configs.</p>
+<p>You can learn more about these processes in the <a href="https://github.com/dd/dd_yandex_pay/blob/main/.github/workflows/mkdocs-release.yml">release</a> and <a href="https://github.com/dd/dd_yandex_pay/blob/main/.github/workflows/mkdocs-dev.yml">dev</a> workflow configs.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-09-21 22:12:30+0000</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-09-28 15:16:22+0000</span>
       
         <br>
         Created:
@@ -1140,10 +1160,10 @@
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -1234,10 +1254,11 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.path", "navigation.prune", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "navigation.footer", "content.action.view", "content.action.edit", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.path", "navigation.prune", "toc.follow", "navigation.top", "search.suggest", "search.highlight", "navigation.footer", "content.action.view", "content.action.edit", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.726fbb30.min.js"></script>
+      <script src="../../assets/javascripts/bundle.94c44541.min.js"></script>
       
     
   </body>
