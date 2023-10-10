@@ -92,7 +92,7 @@ remove = [
 	"precommit_uninstall",
 ]
 changelog-update = [
-	"git pull --tags",
+	"git fetch origin --tags",
 	"gitmoji-changelog update \"$(hatch version)\" --preset generic --group-similar-commits",
 ]
 
