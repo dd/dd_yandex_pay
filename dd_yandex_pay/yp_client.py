@@ -118,6 +118,7 @@ class YandexPayClient:
 
         Raises:
             requests.exceptions.HTTPError: HTTP Errors.
+            dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
         """
 
         response.raise_for_status()
@@ -149,7 +150,7 @@ class YandexPayClient:
         **kwargs: dict,
     ) -> dict:
         """
-        Запрос для создания ссылки на оплату.
+        Запрос на создание ссылки на оплату заказа.
 
         Подбронее о данных и ответе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post).
 
@@ -168,6 +169,10 @@ class YandexPayClient:
 
         Returns:
             Данные ответа на создание ссылки для оплаты.
+
+        Raises:
+            requests.exceptions.HTTPError: HTTP Errors.
+            dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
         """
 
         json = {

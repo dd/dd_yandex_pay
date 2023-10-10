@@ -60,23 +60,32 @@ custom_response.status_code = 200
 custom_response._content = bytes(json.dumps(response_data), "utf-8")
 
 
-def test_request_data():
+@patch("requests.request", return_value=custom_response)
+@patch("uuid.uuid4", return_value="913a1867-aeb8-4ca8-9c83-b2ad4c2c6f4a")
+def test_request_data(mocked_uuid4, mocked_request):
     """
     Checking the sent data.
     """
 
     yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
+    yp_client.create_order(
+        cart=cart,
+        currencyCode=data["currencyCode"],
+        orderId=data["orderId"],
+        redirectUrls=data["redirectUrls"],
+    )
 
-    with patch("requests.request", return_value=custom_response) as mocked_request:
-        yp_client.create_order(
-            cart=cart,
-            currencyCode=data["currencyCode"],
-            orderId=data["orderId"],
-            redirectUrls=data["redirectUrls"],
-        )
-
-    mocked_request.assert_called_once()
-    assert mocked_request.call_args.kwargs["json"] == data
+    mocked_request.assert_called_once_with(
+        "POST",
+        "http://127.0.0.1/v1/orders",
+        json=data,
+        timeout=(3, 10),
+        headers={
+            "Authorization": "Api-Key api-key",
+            "X-Request-Id": "913a1867-aeb8-4ca8-9c83-b2ad4c2c6f4a",
+            "X-Request-Timeout": "10000",
+        },
+    )
 
 
 @patch("requests.request", return_value=custom_response)
@@ -105,49 +114,44 @@ def test_all_data_params(mocked_request):
     }
 
 
+@patch("dd_yandex_pay.yp_client.YandexPayClient.get_url", return_value="http://127.0.0.1/")
 @patch("requests.request", return_value=custom_response)
-def test_usage_yandexpayclient_get_url(mocked_request):
+def test_usage_yandexpayclient_get_url(mocked_request, mocked_get_url):
     """
     Using the get_url method.
     """
 
     yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
-
-    with patch(
-        "dd_yandex_pay.yp_client.YandexPayClient.get_url", return_value="http://127.0.0.1/"
-    ) as mocked_get_url:
-        yp_client.create_order(
-            cart=cart,
-            currencyCode=data["currencyCode"],
-            orderId=data["orderId"],
-            redirectUrls=data["redirectUrls"],
-        )
+    yp_client.create_order(
+        cart=cart,
+        currencyCode=data["currencyCode"],
+        orderId=data["orderId"],
+        redirectUrls=data["redirectUrls"],
+    )
 
     mocked_get_url.assert_called_once_with(yp_client.RESOURCE_ORDER_CREATE)
 
 
-def test_usage_request():
+@patch("dd_yandex_pay.yp_client.YandexPayClient.request", return_value=custom_response)
+def test_usage_request(mocked_request):
     """
     Checking the use of the YandexPayClient.request method.
     """
 
     yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
-
-    with patch(
-        "dd_yandex_pay.yp_client.YandexPayClient.request", return_value=custom_response
-    ) as mocked_request:
-        yp_client.create_order(
-            cart=cart,
-            currencyCode=data["currencyCode"],
-            orderId=data["orderId"],
-            redirectUrls=data["redirectUrls"],
-        )
+    yp_client.create_order(
+        cart=cart,
+        currencyCode=data["currencyCode"],
+        orderId=data["orderId"],
+        redirectUrls=data["redirectUrls"],
+    )
 
     mocked_request.assert_called_once()
 
 
+@patch("uuid.uuid4", return_value="7928a3ec-05be-4819-9f80-a757c33293e9")
 @patch("requests.request", return_value=custom_response)
-def test_passing_additional_parameters(mocked_request):
+def test_passing_additional_parameters(mocked_request, mocked_uuid4):
     """
     Passing additional parameters to requests.request.
     """
@@ -160,45 +164,50 @@ def test_passing_additional_parameters(mocked_request):
         redirectUrls=data["redirectUrls"],
         allow_redirects=False,
         cookies={"foo": "bar"},
+        headers={"X-Authorization": "Bearer auth_key"},
     )
 
     mocked_request.assert_called_once()
     assert mocked_request.call_args.kwargs["allow_redirects"] is False
     assert mocked_request.call_args.kwargs["cookies"] == {"foo": "bar"}
+    assert mocked_request.call_args.kwargs["headers"] == {
+        "Authorization": "Api-Key api-key",
+        "X-Request-Id": "7928a3ec-05be-4819-9f80-a757c33293e9",
+        "X-Request-Timeout": "10000",
+        "X-Authorization": "Bearer auth_key",
+    }
 
 
+@patch("dd_yandex_pay.yp_client.YandexPayClient.response_handler")
 @patch("requests.request", return_value=custom_response)
-def test_usage_response_handler(mocked_request):
+def test_usage_response_handler(mocked_request, mocked_handler):
     """
     Checking the use of the YandexPayClient.response_handler method.
     """
 
     yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
-
-    with patch("dd_yandex_pay.yp_client.YandexPayClient.response_handler") as mocked_handler:
-        yp_client.create_order(
-            cart=cart,
-            currencyCode=data["currencyCode"],
-            orderId=data["orderId"],
-            redirectUrls=data["redirectUrls"],
-        )
+    yp_client.create_order(
+        cart=cart,
+        currencyCode=data["currencyCode"],
+        orderId=data["orderId"],
+        redirectUrls=data["redirectUrls"],
+    )
 
     mocked_handler.assert_called_once_with(custom_response, True)
 
 
-def test_returned_data():
+@patch("requests.request", return_value=custom_response)
+def test_returned_data(mocked_request):
     """
     Checking the returned data using the method.
     """
 
     yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
-
-    with patch("requests.request", return_value=custom_response):
-        response = yp_client.create_order(
-            cart=cart,
-            currencyCode=data["currencyCode"],
-            orderId=data["orderId"],
-            redirectUrls=data["redirectUrls"],
-        )
+    response = yp_client.create_order(
+        cart=cart,
+        currencyCode=data["currencyCode"],
+        orderId=data["orderId"],
+        redirectUrls=data["redirectUrls"],
+    )
 
     assert response == response_data["data"]
