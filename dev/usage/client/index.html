@@ -509,6 +509,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#receving-order-details" class="md-nav__link">
+    Receving order details
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -829,6 +836,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#receving-order-details" class="md-nav__link">
+    Receving order details
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -868,6 +882,10 @@
 </code></pre></div>
 <p>Базовый урл не обязательный параметр и по умолчанию настроен на боевое API.</p>
 <p>Так же в клиент можно передать несколько <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient">дополнительных параметров</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Так же следует отметить что все методы клиента возвращают не весь контент ответа, а только лишь объект <code>data</code> из ответа. Так как остальная часть тела ответа отражает статус запроса, и в случае успешного запроса всегда равна одним и тем же данным, эти данные было решено игнорировать. В случае каких либо ошибок, запрос можно найти в полу <code>response</code> в ошибке.</p>
+</div>
 <h2 id="creating-order-aka-payment-link">Creating order aka payment link<a class="headerlink" href="#creating-order-aka-payment-link" title="Permanent link">¤</a></h2>
 <p>Для создания ссылки на оплату есть метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.create_order">create_order</a>.</p>
 <div class="language-pycon highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">cart</span> <span class="o">=</span> <span class="p">{</span>
@@ -890,7 +908,7 @@
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="gp">... </span>        <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;180.00&quot;</span><span class="p">,</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="gp">... </span>    <span class="p">},</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="gp">... </span><span class="p">}</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">yp_client</span><span class="o">.</span><span class="n">create_order</span><span class="p">(</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">response_data</span> <span class="o">=</span> <span class="n">yp_client</span><span class="o">.</span><span class="n">create_order</span><span class="p">(</span>
 <a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="gp">... </span>    <span class="n">cart</span><span class="o">=</span><span class="n">cart</span><span class="p">,</span>
 <a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="gp">... </span>    <span class="n">currencyCode</span><span class="o">=</span><span class="s2">&quot;RUB&quot;</span><span class="p">,</span>
 <a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="gp">... </span>    <span class="n">orderId</span><span class="o">=</span><span class="s2">&quot;test #1/1&quot;</span><span class="p">,</span>
@@ -899,6 +917,8 @@
 <a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="gp">... </span>        <span class="s2">&quot;onSuccess&quot;</span><span class="p">:</span> <span class="s2">&quot;https://127.0.0.1/success&quot;</span><span class="p">,</span>
 <a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="gp">... </span>    <span class="p">},</span>
 <a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="gp">... </span><span class="p">)</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="go">{&#39;paymentUrl&#39;: &#39;https://sandbox.pay.ya.ru/a/bcdefg&#39;}</span>
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -923,13 +943,23 @@
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
 </code></pre></div>
 </div>
+<h2 id="receving-order-details">Receving order details<a class="headerlink" href="#receving-order-details" title="Permanent link">¤</a></h2>
+<p>Получить данные заказа можно используя метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.get_order">get_order</a>:</p>
+<div class="language-pycon highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">response_data</span> <span class="o">=</span> <span class="n">yp_client</span><span class="o">.</span><span class="n">get_order</span><span class="p">(</span><span class="s2">&quot;test_1&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">    &quot;delivery&quot;: {},</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">    &quot;operations&quot;: [],</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="go">    &quot;order&quot;: {},</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="go">}</span>
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-10-09 23:45:04+0000</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-10-10 13:14:41+0000</span>
       
         <br>
         Created:
