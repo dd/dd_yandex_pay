@@ -25,7 +25,7 @@ jobs:
     - name: Set up Python runtime
       uses: actions/setup-python@v4
       with:
-        python-version: 3.11
+        python-version: 3.12
 
     - name: Ensure latest pip
       run: python -m pip install --upgrade pip
@@ -48,6 +48,7 @@ jobs:
           hatch run docs:ci-build $DDYP_DOCS_VERSION dev
         else
           hatch run docs:ci-build $DDYP_DOCS_VERSION latest
+          hatch run docs:mike set-default --push latest
         fi
 
     - name: Create archive
