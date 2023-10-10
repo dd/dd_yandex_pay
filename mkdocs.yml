@@ -19,7 +19,7 @@ theme:
   logo: assets/logo.svg
   favicon: assets/favicon.ico
   palette:
-    # dark mode and switch to automatic
+    # dark mode and switch to light
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black

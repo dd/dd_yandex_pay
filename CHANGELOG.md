@@ -1,5 +1,26 @@
 # Changelog
 
+<a name="0.2.0"></a>
+## 0.2.0 (2023-10-10)
+
+### Added
+
+- ✨ (client): Method for getting order data [[ef73e56](https://github.com/dd/dd_yandex_pay/commit/ef73e56e3ba23c84fdbcd5692951d1778ee36a43)]
+- ✅ (tests): Improved order creation tests [[d7e792e](https://github.com/dd/dd_yandex_pay/commit/d7e792e9199db9337ca1311f771f497ecb65bd3e)]
+
+### Changed
+
+- 🔧 (CI): Corrected the release of documentation [[8759de8](https://github.com/dd/dd_yandex_pay/commit/8759de87bac6a1fdee170d7288462648dcdce4b4),[42a5b0c](https://github.com/dd/dd_yandex_pay/commit/42a5b0c658694afd26e13b02a7fdf8d4748cdf7b),[3e3597e](https://github.com/dd/dd_yandex_pay/commit/3e3597e38fcf213fe6ff37da245f738bb0b9cfe3)]
+- ♻️ (chore): Changed the client api [[10d678d](https://github.com/dd/dd_yandex_pay/commit/10d678d8b97e9829c0647be7fd494203a6330329)]
+- 🔧 (chore): Added support for python 3.12 [[7e5f211](https://github.com/dd/dd_yandex_pay/commit/7e5f21117469dc9212bfd8e7e39fff681543b1ee)]
+- ⬆️ (chore): Updated requirements [[575620b](https://github.com/dd/dd_yandex_pay/commit/575620bb086596098a0a961d8a211d0698f5bc78)]
+
+### Miscellaneous
+
+- 💡 (docs): Changed comment [[5b8312e](https://github.com/dd/dd_yandex_pay/commit/5b8312e4602d356b44c6a4673b4923a9a69e6545)]
+- 📝 (docs): Update documentations [[094c149](https://github.com/dd/dd_yandex_pay/commit/094c14904ca2d8acfc0ef8d23776c66a5e3f3e45),[6cf0a02](https://github.com/dd/dd_yandex_pay/commit/6cf0a0275146ae1d047f8c495189cc9323d64619)]
+
+
 <a name="0.1.0"></a>
 ## 0.1.0 (2023-09-28)
 

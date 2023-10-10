@@ -33,13 +33,12 @@ As you develop and refine, please try to keep your repository consistent with [g
 
 ## Tests
 
-
-When working on a project, it is extremely important to cover everything with tests in order to avoid problems and errors in the code. See working on tests in the appropriate section<!-- [section](tests.md) -->.
+When working on a project, it is extremely important to cover everything with tests in order to avoid problems and errors in the code. Read about tests in the corresponding [section](tests.md).
 
 
 ## Documentation
 
-The documentation is implemented using the [mkdocs](https://www.mkdocs.org/) generator and the [mkdocs material](https://squidfunk.github.io/mkdocs-material/) theme. When working on library functionality, it is important to expand the [usage](../usage) section. For more information about developing documentation, see the corresponding [section](docs/index.md).
+The documentation is implemented using the [mkdocs](https://www.mkdocs.org/) generator and the [mkdocs material](https://squidfunk.github.io/mkdocs-material/) theme. When working on library functionality, it is important to expand the [usage](../../usage/getting_started/) section. For more information about developing documentation, see the corresponding [section](docs/index.md).
 
 
 ## Versioning
