@@ -11,6 +11,9 @@
 
 Так же в клиент можно передать несколько [дополнительных параметров][dd_yandex_pay.yp_client.YandexPayClient].
 
+!!! note
+	Так же следует отметить что все методы клиента возвращают не весь контент ответа, а только лишь объект `data` из ответа. Так как остальная часть тела ответа отражает статус запроса, и в случае успешного запроса всегда равна одним и тем же данным, эти данные было решено игнорировать. В случае каких либо ошибок, запрос можно найти в полу `response` в ошибке.
+
 
 ## Creating order aka payment link
 
@@ -37,7 +40,7 @@
 ...         "amount": "180.00",
 ...     },
 ... }
->>> response = yp_client.create_order(
+>>> response_data = yp_client.create_order(
 ...     cart=cart,
 ...     currencyCode="RUB",
 ...     orderId="test #1/1",
@@ -46,6 +49,8 @@
 ...         "onSuccess": "https://127.0.0.1/success",
 ...     },
 ... )
+>>> print(response_data)
+{'paymentUrl': 'https://sandbox.pay.ya.ru/a/bcdefg'}
 ```
 
 !!! info
@@ -74,3 +79,18 @@
 		}
 	}
 	```
+
+
+## Receving order details
+
+Получить данные заказа можно используя метод [get_order][dd_yandex_pay.yp_client.YandexPayClient.get_order]:
+
+```pycon linenums="0"
+>>> response_data = yp_client.get_order("test_1")
+>>> print(response_data)
+{
+    "delivery": {},
+    "operations": [],
+    "order": {},
+}
+```

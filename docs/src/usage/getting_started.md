@@ -20,7 +20,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 Для взаимодействия с [Yandex Pay API][yandex_pay_api_docs] реализован интерфейс в виде класса [YandexPayClient][yandexpayclient] с набором методов для обращения к каждому из ендпоинтов API:
 
 * [create_order][creating-order-aka-payment-link]
-* get_order
+* [get_order][receving-order-details]
 * cancel_order
 * refund_order
 * refund_order_v2

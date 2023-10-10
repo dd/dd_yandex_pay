@@ -19,6 +19,7 @@ class YandexPayClient:
     """
 
     RESOURCE_ORDER_CREATE: Final[str] = "v1/orders"
+    RESOURCE_ORDER_DETAILS: Final[str] = "v1/orders/{id}"
 
     def __init__(
         self,
@@ -195,6 +196,34 @@ class YandexPayClient:
             "POST",
             self.get_url(self.RESOURCE_ORDER_CREATE),
             json=json,
+            **kwargs,
+        )
+
+        response_data = self.response_handler(response, True)
+        return response_data["data"]
+
+    def get_order(self, order_id: str, **kwargs: dict) -> dict:
+        """
+        Запрос на получение деталей заказа.
+
+        Подбронее о данных и ответе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_order-get).
+
+        Attributes:
+            order_id: Идентификатор заказа.
+            kwargs: Прочие дополнительные параметры метода [request][requests.request] кроме method,
+                url и json.
+
+        Returns:
+            Полученные данные заказа.
+
+        Raises:
+            requests.exceptions.HTTPError: HTTP Errors.
+            dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
+        """
+
+        response = self.request(
+            "GET",
+            self.get_url(self.RESOURCE_ORDER_DETAILS.format(id=order_id)),
             **kwargs,
         )
 
