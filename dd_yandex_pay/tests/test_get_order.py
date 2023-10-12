@@ -63,9 +63,7 @@ def test_usage_yandexpayclient_get_url(mocked_request, mocked_get_url):
     yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
     yp_client.get_order("test_123456")
 
-    mocked_get_url.assert_called_once_with(
-        yp_client.RESOURCE_ORDER_DETAILS.format(id="test_123456")
-    )
+    mocked_get_url.assert_called_once_with("v1/orders/test_123456")
 
 
 @patch("dd_yandex_pay.yp_client.YandexPayClient.request", return_value=custom_response)

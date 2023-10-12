@@ -18,8 +18,13 @@ class YandexPayClient:
     [yandex_pay_api_docs]: https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/
     """
 
-    RESOURCE_ORDER_CREATE: Final[str] = "v1/orders"
-    RESOURCE_ORDER_DETAILS: Final[str] = "v1/orders/{id}"
+    RESOURCE_V1_ORDER_CREATE: Final[str] = "v1/orders"
+    RESOURCE_V1_ORDER_DETAILS: Final[str] = "v1/orders/{id}"
+    RESOURCE_V1_ORDER_CANCEL: Final[str] = "v1/orders/{id}/cancel"
+    RESOURCE_V1_ORDER_REFUND: Final[str] = "v1/orders/{id}/refund"
+    RESOURCE_V2_ORDER_REFUND: Final[str] = "v2/orders/{id}/refund"
+    RESOURCE_V1_ORDER_CAPTURE: Final[str] = "v1/orders/{id}/capture"
+    RESOURCE_V1_OPERATIONS: Final[str] = "v1/operations/"
 
     def __init__(
         self,
@@ -153,7 +158,7 @@ class YandexPayClient:
         """
         Запрос на создание ссылки на оплату заказа.
 
-        Подбронее о данных и ответе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post).
+        Подбронее о запросе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post).
 
         Attributes:
             cart: [Корзина](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post#renderedcart).
@@ -194,7 +199,7 @@ class YandexPayClient:
 
         response = self.request(
             "POST",
-            self.get_url(self.RESOURCE_ORDER_CREATE),
+            self.get_url(self.RESOURCE_V1_ORDER_CREATE),
             json=json,
             **kwargs,
         )
@@ -206,7 +211,7 @@ class YandexPayClient:
         """
         Запрос на получение деталей заказа.
 
-        Подбронее о данных и ответе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_order-get).
+        Подбронее о запросе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_order-get).
 
         Attributes:
             order_id: Идентификатор заказа.
@@ -223,7 +228,252 @@ class YandexPayClient:
 
         response = self.request(
             "GET",
-            self.get_url(self.RESOURCE_ORDER_DETAILS.format(id=order_id)),
+            self.get_url(self.RESOURCE_V1_ORDER_DETAILS.format(id=order_id)),
+            **kwargs,
+        )
+
+        response_data = self.response_handler(response, True)
+        return response_data["data"]
+
+    def cancel_order(
+        self,
+        order_id: str,
+        reason: str,
+        externalOperationId: Optional[str] = None,
+        **kwargs: dict,
+    ) -> dict:
+        """
+        Запрос на отмену платежа.
+
+        Подбронее о запросе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_order-get).
+
+        Attributes:
+            order_id: Идентификатор заказа.
+            reason: Причина отмены.
+            externalOperationId: Идентификатор операции.
+            kwargs: Прочие дополнительные параметры метода [request][requests.request] кроме method,
+                url и json.
+
+        Returns:
+            Данные о операции [sic].
+
+        Raises:
+            requests.exceptions.HTTPError: HTTP Errors.
+            dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
+        """
+
+        json = {"reason": reason}
+
+        if externalOperationId:
+            json["externalOperationId"] = externalOperationId
+
+        response = self.request(
+            "POST",
+            self.get_url(self.RESOURCE_V1_ORDER_CANCEL.format(id=order_id)),
+            json=json,
+            **kwargs,
+        )
+
+        response_data = self.response_handler(response, True)
+        return response_data["data"]
+
+    def refund_order_v1(
+        self,
+        order_id: str,
+        orderAmount: str,
+        refundAmount: str,
+        cart: Optional[dict] = None,
+        externalOperationId: Optional[str] = None,
+        shipping: Optional[dict] = None,
+        **kwargs: dict,
+    ) -> dict:
+        """
+        Запрос на возврат средств за заказ.
+
+        Подбронее о запросе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_refund-post).
+
+        Attributes:
+            order_id: Идентификатор заказа.
+            orderAmount: Итоговая сумма заказа. Равна cart.total.amount + shipping.amount.
+            refundAmount: Сумма к возврату.
+            cart: Итоговая корзина.
+            externalOperationId: Идентификатор операции в системе продавца.
+            shipping: Стоимость доставки [sic]???.
+            kwargs: Прочие дополнительные параметры метода [request][requests.request] кроме method,
+                url и json.
+
+        Returns:
+            Данные о операции [sic].
+
+        Raises:
+            requests.exceptions.HTTPError: HTTP Errors.
+            dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
+        """
+
+        json = {
+            "orderAmount": orderAmount,
+            "refundAmount": refundAmount,
+        }
+
+        if cart:
+            json["cart"] = cart
+
+        if externalOperationId:
+            json["externalOperationId"] = externalOperationId
+
+        if shipping:
+            json["shipping"] = shipping
+
+        response = self.request(
+            "POST",
+            self.get_url(self.RESOURCE_V1_ORDER_REFUND.format(id=order_id)),
+            json=json,
+            **kwargs,
+        )
+
+        response_data = self.response_handler(response, True)
+        return response_data["data"]
+
+    def refund_order_v2(
+        self,
+        order_id: str,
+        refundAmount: str,
+        externalOperationId: Optional[str] = None,
+        targetCart: Optional[dict] = None,
+        targetShipping: Optional[dict] = None,
+        **kwargs: dict,
+    ) -> dict:
+        """
+        Запрос на возврат средств за заказ.
+
+        Подбронее о запросе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v2_refund-post).
+
+        Attributes:
+            order_id: Идентификатор заказа.
+            refundAmount: Сумма к возврату.
+            externalOperationId: Идентификатор операции возврата в системе продавца. Должен быть
+                уникальным.
+            targetCart: Описывает итоговое состояние корзины после выполнения возврата. Если это
+                поле не указано или равно null, то считается, что корзина возвращается полностью.
+            targetShipping: Применимо только к Yandex Pay Checkout. В остальных случаях следует
+                оставить это поле пустым.
+                Описывает итоговое состояние доставки после выполнения возврата. Если это поле не
+                указано или равно null, то считается, что стоимость доставки возвращается полностью.
+            kwargs: Прочие дополнительные параметры метода [request][requests.request] кроме method,
+                url и json.
+
+        Returns:
+            Данные о операции [sic].
+
+        Raises:
+            requests.exceptions.HTTPError: HTTP Errors.
+            dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
+        """
+
+        json = {
+            "refundAmount": refundAmount,
+        }
+
+        if externalOperationId:
+            json["externalOperationId"] = externalOperationId
+
+        if targetCart:
+            json["targetCart"] = targetCart
+
+        if targetShipping:
+            json["targetShipping"] = targetShipping
+
+        response = self.request(
+            "POST",
+            self.get_url(self.RESOURCE_V2_ORDER_REFUND.format(id=order_id)),
+            json=json,
+            **kwargs,
+        )
+
+        response_data = self.response_handler(response, True)
+        return response_data["data"]
+
+    def capture_order(
+        self,
+        order_id: str,
+        cart: Optional[dict] = None,
+        externalOperationId: Optional[str] = None,
+        orderAmount: Optional[str] = None,
+        shipping: Optional[dict] = None,
+        **kwargs: dict,
+    ) -> dict:
+        """
+        Запрос на списание средств за заказ.
+
+        Подбронее о запросе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_capture-post).
+
+        Attributes:
+            order_id: Идентификатор заказа.
+            cart: Итоговая корзина.
+            externalOperationId: Идентификатор операции.
+            orderAmount: Сумма к списанию. Если не указана, будет списана вся заблокированная сумма.
+            shipping: Итоговый способ доставки.
+            kwargs: Прочие дополнительные параметры метода [request][requests.request] кроме method,
+                url и json.
+
+        Returns:
+            Данные о операции [sic].
+
+        Raises:
+            requests.exceptions.HTTPError: HTTP Errors.
+            dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
+        """
+
+        json = {}
+
+        if cart:
+            json["cart"] = cart
+
+        if externalOperationId:
+            json["externalOperationId"] = externalOperationId
+
+        if orderAmount:
+            json["orderAmount"] = orderAmount
+
+        if shipping:
+            json["shipping"] = shipping
+
+        response = self.request(
+            "POST",
+            self.get_url(self.RESOURCE_V1_ORDER_CAPTURE.format(id=order_id)),
+            json=json,
+            **kwargs,
+        )
+
+        response_data = self.response_handler(response, True)
+        return response_data["data"]
+
+    def get_operation(
+        self,
+        external_operation_id: str,
+        **kwargs: dict,
+    ) -> dict:
+        """
+        Запрос на списание средств за заказ.
+
+        Подбронее о запросе в документации [яндекса](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_capture-post).
+
+        Attributes:
+            external_operation_id: Идентификатор операции на стороне продавца.
+            kwargs: Прочие дополнительные параметры метода [request][requests.request] кроме method,
+                url и json.
+
+        Returns:
+            Данные о операции.
+
+        Raises:
+            requests.exceptions.HTTPError: HTTP Errors.
+            dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
+        """
+
+        response = self.request(
+            "GET",
+            self.get_url(self.RESOURCE_V1_OPERATIONS.format(id=external_operation_id)),
             **kwargs,
         )
 
