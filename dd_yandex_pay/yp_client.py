@@ -226,9 +226,10 @@ class YandexPayClient:
             dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
         """
 
+        order_id_safed = urllib.parse.quote(order_id, safe="")
         response = self.request(
             "GET",
-            self.get_url(self.RESOURCE_V1_ORDER_DETAILS.format(id=order_id)),
+            self.get_url(self.RESOURCE_V1_ORDER_DETAILS.format(id=order_id_safed)),
             **kwargs,
         )
 
@@ -267,9 +268,10 @@ class YandexPayClient:
         if externalOperationId:
             json["externalOperationId"] = externalOperationId
 
+        order_id_safed = urllib.parse.quote(order_id, safe="")
         response = self.request(
             "POST",
-            self.get_url(self.RESOURCE_V1_ORDER_CANCEL.format(id=order_id)),
+            self.get_url(self.RESOURCE_V1_ORDER_CANCEL.format(id=order_id_safed)),
             json=json,
             **kwargs,
         )
@@ -324,9 +326,10 @@ class YandexPayClient:
         if shipping:
             json["shipping"] = shipping
 
+        order_id_safed = urllib.parse.quote(order_id, safe="")
         response = self.request(
             "POST",
-            self.get_url(self.RESOURCE_V1_ORDER_REFUND.format(id=order_id)),
+            self.get_url(self.RESOURCE_V1_ORDER_REFUND.format(id=order_id_safed)),
             json=json,
             **kwargs,
         )
@@ -383,9 +386,10 @@ class YandexPayClient:
         if targetShipping:
             json["targetShipping"] = targetShipping
 
+        order_id_safed = urllib.parse.quote(order_id, safe="")
         response = self.request(
             "POST",
-            self.get_url(self.RESOURCE_V2_ORDER_REFUND.format(id=order_id)),
+            self.get_url(self.RESOURCE_V2_ORDER_REFUND.format(id=order_id_safed)),
             json=json,
             **kwargs,
         )
@@ -438,9 +442,10 @@ class YandexPayClient:
         if shipping:
             json["shipping"] = shipping
 
+        order_id_safed = urllib.parse.quote(order_id, safe="")
         response = self.request(
             "POST",
-            self.get_url(self.RESOURCE_V1_ORDER_CAPTURE.format(id=order_id)),
+            self.get_url(self.RESOURCE_V1_ORDER_CAPTURE.format(id=order_id_safed)),
             json=json,
             **kwargs,
         )
