@@ -1,5 +1,21 @@
 # Changelog
 
+<a name="0.3.0"></a>
+## 0.3.0 (2023-10-13)
+
+### Added
+
+- ✨ (client): Added methods for remaining API endpoints [[16223d7](https://github.com/dd/dd_yandex_pay/commit/16223d757dd05d4fd166deb7269eac813588dc11)]
+
+### Fixed
+
+- 🐛 (client): Convert order number characters to request path [[bb0edc8](https://github.com/dd/dd_yandex_pay/commit/bb0edc88c33bf72c0c848d4bdab278af6472e1d6)]
+
+### Miscellaneous
+
+- 📝 (docs): Updated links in documentation [[164fd6e](https://github.com/dd/dd_yandex_pay/commit/164fd6e847e210cc4d8391fc320a7ac001385cab)]
+
+
 <a name="0.2.0"></a>
 ## 0.2.0 (2023-10-10)
 
