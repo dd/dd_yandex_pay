@@ -6,6 +6,7 @@ Cases:
   * Passing additional parameters to requests.request.
   * Checking the use of the YandexPayClient.response_handler method.
   * Checking the returned data using the method.
+  * Checking character conversion in paths.
 """
 
 import json
@@ -63,9 +64,7 @@ def test_usage_yandexpayclient_get_url(mocked_request, mocked_get_url):
     yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
     yp_client.get_order("test_123456")
 
-    mocked_get_url.assert_called_once_with(
-        yp_client.RESOURCE_ORDER_DETAILS.format(id="test_123456")
-    )
+    mocked_get_url.assert_called_once_with("v1/orders/test_123456")
 
 
 @patch("dd_yandex_pay.yp_client.YandexPayClient.request", return_value=custom_response)
@@ -129,3 +128,15 @@ def test_returned_data(mocked_request):
     response = yp_client.get_order("test_123456")
 
     assert response == response_data["data"]
+
+
+@patch("requests.request", return_value=custom_response)
+def test_character_conversion(mocked_request):
+    """
+    Checking character conversion in paths.
+    """
+
+    yp_client = YandexPayClient("api-key", base_url="http://127.0.0.1/")
+    yp_client.get_order("test #1/1")
+
+    assert mocked_request.call_args.args[1] == "http://127.0.0.1/v1/orders/test%20%231%2F1"

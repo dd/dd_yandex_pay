@@ -108,7 +108,7 @@ def test_all_data_params(mocked_request):
     mocked_request.assert_called_once()
     assert mocked_request.call_args.kwargs["json"] == {
         **data,
-        "availablePaymentMethods": [constants.PAYMENT_METHODS_CARD],
+        "availablePaymentMethods": ["CARD"],
         "extensions": {"qrData": {"token": "qr_token"}},
         "ttl": 60000,
     }
@@ -129,7 +129,7 @@ def test_usage_yandexpayclient_get_url(mocked_request, mocked_get_url):
         redirectUrls=data["redirectUrls"],
     )
 
-    mocked_get_url.assert_called_once_with(yp_client.RESOURCE_ORDER_CREATE)
+    mocked_get_url.assert_called_once_with("v1/orders")
 
 
 @patch("dd_yandex_pay.yp_client.YandexPayClient.request", return_value=custom_response)
