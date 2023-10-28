@@ -24,7 +24,7 @@ class YandexPayClient:
     RESOURCE_V1_ORDER_REFUND: Final[str] = "v1/orders/{id}/refund"
     RESOURCE_V2_ORDER_REFUND: Final[str] = "v2/orders/{id}/refund"
     RESOURCE_V1_ORDER_CAPTURE: Final[str] = "v1/orders/{id}/capture"
-    RESOURCE_V1_OPERATIONS: Final[str] = "v1/operations/"
+    RESOURCE_V1_OPERATION: Final[str] = "v1/operations/{id}"
 
     def __init__(
         self,
@@ -476,9 +476,10 @@ class YandexPayClient:
             dd_yandex_pay.exceptions.YandexPayAPIError: API Errors.
         """
 
+        id_safed = urllib.parse.quote(external_operation_id, safe="")
         response = self.request(
             "GET",
-            self.get_url(self.RESOURCE_V1_OPERATIONS.format(id=external_operation_id)),
+            self.get_url(self.RESOURCE_V1_OPERATION.format(id=id_safed)),
             **kwargs,
         )
 
