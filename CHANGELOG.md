@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.0.1"></a>
+## 1.0.1 (2023-10-30)
+
+### Changed
+
+- 🔧 (chore): Corrected the project classification [[3ebcdbb](https://github.com/dd/dd_yandex_pay/commit/3ebcdbb364c6a62700a4ff108e25dcb9fe0ac7f7)]
+
+
 <a name="1.0.0"></a>
 ## 1.0.0 (2023-10-30)
 
@@ -12,7 +20,6 @@
 
 - ⬆️ (docs): Updated dependencies for documentation [[21b6192](https://github.com/dd/dd_yandex_pay/commit/21b6192be1ce894d4a50f2aef2426ea7ee279d16)]
 - 📝 (docs): Filled out the documentation [[eacb4b1](https://github.com/dd/dd_yandex_pay/commit/eacb4b1a5ef624d7a22a3de0e2fc4ca25fb43e73)]
--  Merge tag &#x27;v0.3.0&#x27; into dev [[efa76f8](https://github.com/dd/dd_yandex_pay/commit/efa76f8d00b0337d0fa067b80421678221f72f0f)]
 - ✅ (tests): Added tests for all remaining API methods [[9d876ec](https://github.com/dd/dd_yandex_pay/commit/9d876ec6279dda3a8657b1a795a8138cc16b10a5)]
 
 
