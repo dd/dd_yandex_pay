@@ -150,10 +150,10 @@ python = "3.12"
 dependencies = [
 	"mkdocs[i18n]==1.5.3",
 	"mkdocs-literate-nav==0.6.1",
-	"mkdocs-material==9.4.4",
+	"mkdocs-material==9.4.6",
 	"mkdocs-git-revision-date-localized-plugin==1.2.0",
 	"mkdocs-git-authors-plugin==0.7.2",
-	"mkdocstrings-python==1.7.2",
+	"mkdocstrings-python==1.7.3",
 	"black==23.9.1",
 	"mkdocs-minify-plugin==0.7.1",
 	"mkdocs-gen-files==0.5.0",

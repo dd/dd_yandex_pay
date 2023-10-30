@@ -1,7 +1,7 @@
 from dd_yandex_pay.yp_client import YandexPayClient
 
 
-__version__ = "0.3.0"
+__version__ = "1.0.0"
 """
 Version according to [semver](https://semver.org/).
 
