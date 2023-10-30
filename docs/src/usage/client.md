@@ -17,7 +17,7 @@
 
 ## Creating order aka payment link
 
-Для создания ссылки на оплату есть метод [create_order][dd_yandex_pay.yp_client.YandexPayClient.create_order].
+Для [API создания ссылки](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post) на оплату есть метод [create_order][dd_yandex_pay.yp_client.YandexPayClient.create_order].
 
 ```pycon linenums="0"
 >>> cart = {
@@ -83,7 +83,7 @@
 
 ## Receving order details
 
-Получить данные заказа можно используя метод [get_order][dd_yandex_pay.yp_client.YandexPayClient.get_order]:
+Получить данные заказа можно отправив GET запрос на соответствующее [API](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_order-get) используя метод [get_order][dd_yandex_pay.yp_client.YandexPayClient.get_order]:
 
 ```pycon linenums="0"
 >>> response_data = yp_client.get_order("test_1")
@@ -92,5 +92,81 @@
     "delivery": {},
     "operations": [],
     "order": {},
+}
+```
+
+
+## Refund on order
+
+Для возврата средств в API Yandex Pay есть два ендпоинта - [v1](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_refund-post) и [v2](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v2_refund-post), для этих ендпоинтов реализовано 2 метода [refund_order_v1][dd_yandex_pay.yp_client.YandexPayClient.refund_order_v1] и [refund_order_v2][dd_yandex_pay.yp_client.YandexPayClient.refund_order_v2] соответственно:
+
+
+```pycon linenums="0"
+>>> yp_client.refund_order_v1(
+>>>     "test_1",
+>>>     123.45,
+>>>     123.45,
+>>> )
+{
+    "operation": {
+        # ...
+    },
+}
+>>> yp_client.refund_order_v2(
+>>>     "test_1",
+>>>     123.45,
+>>> )
+{
+    "operation": {
+        # ...
+    },
+}
+```
+
+
+## Cancel order
+
+Заказы в статусе `AUTHORIZED` можно [отменить](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_cancel-post) используя метод [cancel_order][dd_yandex_pay.yp_client.YandexPayClient.cancel_order]:
+
+```pycon linenums="0"
+>>> response_data = yp_client.cancel_order("test_1", "Canceling a test order.")
+>>> print(response_data)
+{
+    "operation": {
+        # ...
+    },
+}
+```
+
+!!! note
+	Важно отметить, что это не отмена заказа, то есть с помощью этого метода не получится закрыть ссылку на оплату, что бы пользователь не смог ею воспользоваться. Это отмена списания заблокированных средств, а для списания средств используется метод [capture_order][dd_yandex_pay.yp_client.YandexPayClient.capture_order].
+
+
+## Сapture order
+
+Для [списания средств](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_capture-post) по заказам в статусе `AUTHORIZED` реализован метод [capture_order][dd_yandex_pay.yp_client.YandexPayClient.capture_order]:
+
+```pycon linenums="0"
+>>> response_data = yp_client.capture_order("test_1")
+>>> print(response_data)
+{
+    "operation": {
+        # ...
+    },
+}
+```
+
+
+## Receiving transaction data
+
+Что бы получить [данные по операциям](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/operation/merchant_v1_operations-get) воспользуйтесь методом [get_operation][dd_yandex_pay.yp_client.YandexPayClient.get_operation]:
+
+```pycon linenums="0"
+>>> response_data = yp_client.get_operation("test_1")
+>>> print(response_data)
+{
+    "operation": {
+        # ...
+    },
 }
 ```

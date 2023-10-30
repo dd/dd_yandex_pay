@@ -21,11 +21,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 * [create_order][creating-order-aka-payment-link]
 * [get_order][receving-order-details]
-* cancel_order
-* refund_order
-* refund_order_v2
-* capture_order
-* get_operations
+* [refund_order & refund_order_v2][refund-on-order]
+* [cancel_order][cancel-order]
+* [capture_order][сapture-order]
+* [get_operations][receiving-transaction-data]
 
 !!! note
 	Для запросов к апи вам понадобиться получить API-ключ для работы с Yandex Pay API, о том как его получить описано в [соответствующем разделе](https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/#auth) в документации Yandex Pay.
