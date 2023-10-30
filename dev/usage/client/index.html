@@ -516,6 +516,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#refund-on-order" class="md-nav__link">
+    Refund on order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancel-order" class="md-nav__link">
+    Cancel order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#сapture-order" class="md-nav__link">
+    Сapture order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#receiving-transaction-data" class="md-nav__link">
+    Receiving transaction data
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -843,6 +871,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#refund-on-order" class="md-nav__link">
+    Refund on order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancel-order" class="md-nav__link">
+    Cancel order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#сapture-order" class="md-nav__link">
+    Сapture order
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#receiving-transaction-data" class="md-nav__link">
+    Receiving transaction data
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -887,7 +943,7 @@
 <p>Так же следует отметить что все методы клиента возвращают не весь контент ответа, а только лишь объект <code>data</code> из ответа. Так как остальная часть тела ответа отражает статус запроса, и в случае успешного запроса всегда равна одним и тем же данным, эти данные было решено игнорировать. В случае каких либо ошибок, запрос можно найти в полу <code>response</code> в ошибке.</p>
 </div>
 <h2 id="creating-order-aka-payment-link">Creating order aka payment link<a class="headerlink" href="#creating-order-aka-payment-link" title="Permanent link">¤</a></h2>
-<p>Для создания ссылки на оплату есть метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.create_order">create_order</a>.</p>
+<p>Для <a href="https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_orders-post">API создания ссылки</a> на оплату есть метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.create_order">create_order</a>.</p>
 <div class="language-pycon highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">cart</span> <span class="o">=</span> <span class="p">{</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gp">... </span>    <span class="s2">&quot;externalId&quot;</span><span class="p">:</span> <span class="s2">&quot;test_1&quot;</span><span class="p">,</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="gp">... </span>    <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -944,7 +1000,7 @@
 </code></pre></div>
 </div>
 <h2 id="receving-order-details">Receving order details<a class="headerlink" href="#receving-order-details" title="Permanent link">¤</a></h2>
-<p>Получить данные заказа можно используя метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.get_order">get_order</a>:</p>
+<p>Получить данные заказа можно отправив GET запрос на соответствующее <a href="https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_order-get">API</a> используя метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.get_order">get_order</a>:</p>
 <div class="language-pycon highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">response_data</span> <span class="o">=</span> <span class="n">yp_client</span><span class="o">.</span><span class="n">get_order</span><span class="p">(</span><span class="s2">&quot;test_1&quot;</span><span class="p">)</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">{</span>
@@ -953,13 +1009,69 @@
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="go">    &quot;order&quot;: {},</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="go">}</span>
 </code></pre></div>
+<h2 id="refund-on-order">Refund on order<a class="headerlink" href="#refund-on-order" title="Permanent link">¤</a></h2>
+<p>Для возврата средств в API Yandex Pay есть два ендпоинта - <a href="https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_refund-post">v1</a> и <a href="https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v2_refund-post">v2</a>, для этих ендпоинтов реализовано 2 метода <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.refund_order_v1">refund_order_v1</a> и <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.refund_order_v2">refund_order_v2</a> соответственно:</p>
+<div class="language-pycon highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">yp_client</span><span class="o">.</span><span class="n">refund_order_v1</span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="gp">&gt;&gt;&gt; </span>    <span class="s2">&quot;test_1&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="gp">&gt;&gt;&gt; </span>    <span class="mf">123.45</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="gp">&gt;&gt;&gt; </span>    <span class="mf">123.45</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="go">{</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go">    &quot;operation&quot;: {</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="go">        # ...</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="go">    },</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="go">}</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">yp_client</span><span class="o">.</span><span class="n">refund_order_v2</span><span class="p">(</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="gp">&gt;&gt;&gt; </span>    <span class="s2">&quot;test_1&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="gp">&gt;&gt;&gt; </span>    <span class="mf">123.45</span><span class="p">,</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="go">{</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="go">    &quot;operation&quot;: {</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="go">        # ...</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="go">    },</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="go">}</span>
+</code></pre></div>
+<h2 id="cancel-order">Cancel order<a class="headerlink" href="#cancel-order" title="Permanent link">¤</a></h2>
+<p>Заказы в статусе <code>AUTHORIZED</code> можно <a href="https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_cancel-post">отменить</a> используя метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.cancel_order">cancel_order</a>:</p>
+<div class="language-pycon highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">response_data</span> <span class="o">=</span> <span class="n">yp_client</span><span class="o">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="s2">&quot;test_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Canceling a test order.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">{</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">    &quot;operation&quot;: {</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">        # ...</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="go">    },</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Важно отметить, что это не отмена заказа, то есть с помощью этого метода не получится закрыть ссылку на оплату, что бы пользователь не смог ею воспользоваться. Это отмена списания заблокированных средств, а для списания средств используется метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.capture_order">capture_order</a>.</p>
+</div>
+<h2 id="сapture-order">Сapture order<a class="headerlink" href="#сapture-order" title="Permanent link">¤</a></h2>
+<p>Для <a href="https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/order/merchant_v1_capture-post">списания средств</a> по заказам в статусе <code>AUTHORIZED</code> реализован метод <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.capture_order">capture_order</a>:</p>
+<div class="language-pycon highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">response_data</span> <span class="o">=</span> <span class="n">yp_client</span><span class="o">.</span><span class="n">capture_order</span><span class="p">(</span><span class="s2">&quot;test_1&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">    &quot;operation&quot;: {</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">        # ...</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">    },</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">}</span>
+</code></pre></div>
+<h2 id="receiving-transaction-data">Receiving transaction data<a class="headerlink" href="#receiving-transaction-data" title="Permanent link">¤</a></h2>
+<p>Что бы получить <a href="https://pay.yandex.ru/ru/docs/custom/backend/yandex-pay-api/operation/merchant_v1_operations-get">данные по операциям</a> воспользуйтесь методом <a class="autorefs autorefs-internal" href="../../reference/dd_yandex_pay/yp_client/#dd_yandex_pay.yp_client.YandexPayClient.get_operation">get_operation</a>:</p>
+<div class="language-pycon highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gp">&gt;&gt;&gt; </span><span class="n">response_data</span> <span class="o">=</span> <span class="n">yp_client</span><span class="o">.</span><span class="n">get_operation</span><span class="p">(</span><span class="s2">&quot;test_1&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="go">{</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">    &quot;operation&quot;: {</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="go">        # ...</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="go">    },</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="go">}</span>
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-10-10 13:14:41+0000</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-custom">2023-10-30 09:45:07+0000</span>
       
         <br>
         Created:
